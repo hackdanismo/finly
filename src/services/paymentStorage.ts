@@ -7,7 +7,7 @@ export function loadPayments(): PaymentsState {
     const raw = localStorage.getItem(key); if (!raw) return empty
     const old = JSON.parse(raw) as Partial<PaymentsState> & { version?: number }
     if (!Array.isArray(old.accounts) || !Array.isArray(old.payments)) return empty
-    const accounts = old.accounts.map((a) => ({ ...a, type: validAccountType(String(a.type)), updatedAt: a.updatedAt ?? a.createdAt, archived: Boolean(a.archived) }))
+    const accounts = old.accounts.map((a) => ({ ...a, type: validAccountType(String(a.type)), noIncome: Boolean(a.noIncome), updatedAt: a.updatedAt ?? a.createdAt, archived: Boolean(a.archived) }))
     const people = Array.isArray(old.people) ? old.people : []
     const payments = old.payments.map((p) => ({ ...p, payeeId: p.payeeId ?? null, category: p.category ?? 'other', revisions: p.revisions ?? [], allocations: Array.isArray(p.allocations) ? p.allocations : [] })) as RecurringPayment[]
     const income = Array.isArray(old.income) ? old.income.map((item) => ({ ...item, personId: item.personId ?? null })) : []

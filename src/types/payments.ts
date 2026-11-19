@@ -3,7 +3,7 @@ export type PaymentType = 'direct_debit' | 'standing_order' | 'transfer'
 export type PaymentStatus = 'active' | 'cancelled'
 export type PaymentCategory = string
 export type PayeeType = 'company' | 'organisation' | 'individual' | 'other'
-export interface PaymentAccount { id: string; name: string; type: AccountType; colour: string; createdAt: string; updatedAt: string; archived: boolean }
+export interface PaymentAccount { id: string; name: string; type: AccountType; colour: string; noIncome: boolean; createdAt: string; updatedAt: string; archived: boolean }
 export interface Payee { id: string; name: string; type: PayeeType; reference?: string; notes?: string; createdAt: string; updatedAt: string }
 export interface PaymentRevision { id: string; effectiveDate: string; amountInPence: number; paymentDay: number; accountId: string; type: PaymentType; startDate: string }
 export interface Person { id: string; name: string; createdAt: string; updatedAt: string }
