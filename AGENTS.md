@@ -1,4 +1,4 @@
-# Budget Manager — Codex Instructions
+# Finly Budget Manager
 
 ## Project purpose
 Build a secure, accessible, mobile-friendly personal budget management web app. Users should be able to record income and expenses, manage monthly category budgets, and understand their financial position through clear dashboards and charts.
@@ -12,10 +12,11 @@ Build a secure, accessible, mobile-friendly personal budget management web app. 
 
 ## Technology and architecture
 - Frontend: React + TypeScript (Vite unless the repo already uses another framework).
-- Styling: Tailwind CSS; use shadcn/ui where already installed or explicitly approved.
+- Styling: Vanilla CSS; use shadcn/ui where already installed or explicitly approved.
 - Charts: Recharts where appropriate.
-- Backend and authentication: Supabase when enabled and configured; do not invent credentials or database tables.
+- Backend and authentication: Use CSV files to store data locally for now as a database will be added at a later time.
 - Follow the existing directory structure. Prefer small, reusable, typed components and hooks.
+- Reusable components should be used where possible and always built inside of a components folder inside of src.
 - Use strict TypeScript; avoid `any` unless justified.
 - Separate UI, business logic, data access, and validation.
 - Prefer existing libraries and conventions over introducing alternatives.
@@ -58,7 +59,8 @@ Build a secure, accessible, mobile-friendly personal budget management web app. 
 - After successful checks, create a descriptive Conventional Commit, for example:
   - `feat: add monthly budget overview`
   - `fix: correct recurring expense totals`
-  - `test: cover category budget calculations`
+  - `chore: cover category budget calculations`
+  - `chore: for anything else that does not meet the earlier categories`
 - If a task requires multiple independently meaningful commits, explain the split.
 - Push to the designated remote development/feature branch only if the environment has GitHub access and the user has authorized pushing. Otherwise leave the commit locally or provide the patch and explain the limitation.
 - Prefer pull requests and review before merging to `main`.
