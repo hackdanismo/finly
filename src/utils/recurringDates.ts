@@ -1,0 +1,6 @@
+import type { RecurringPayment, PaymentRevision } from '../types/payments'
+const key = (date: Date) => `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`
+export const daysInMonth = (year: number, month: number) => new Date(year, month + 1, 0).getDate()
+export function getRevision(payment: RecurringPayment, date: Date): PaymentRevision | undefined { return [...payment.revisions].reverse().find((revision) => revision.effectiveDate <= key(date)) }
+export function occurrenceForMonth(payment: RecurringPayment, year: number, month: number) { const date = new Date(year, month, Math.min(getRevision(payment, new Date(year, month, 1))?.paymentDay ?? payment.paymentDay, daysInMonth(year, month))); const revision = getRevision(payment, date); if (!revision || key(date) < revision.startDate || key(date) < payment.startDate || (payment.status === 'cancelled' && payment.cancelledAt && key(date) >= payment.cancelledAt)) return null; return { date, amountInPence: revision.amountInPence, accountId: revision.accountId, type: revision.type } }
+export function occurrencesInMonth(payments: RecurringPayment[], year: number, month: number) { return payments.flatMap((payment) => { const occurrence = occurrenceForMonth(payment, year, month); return occurrence ? [{ payment, ...occurrence }] : [] }) }

@@ -1,0 +1,2 @@
+export const formatCurrency = (pence: number) => new Intl.NumberFormat('en-GB', { style: 'currency', currency: 'GBP' }).format(pence / 100)
+export function parsePounds(value: string): number | null { const normalized = value.trim().replace(/£/g, '').replace(/,/g, ''); if (!/^\d+(\.\d{1,2})?$/.test(normalized)) return null; const [pounds, pennies = ''] = normalized.split('.'); const result = Number(pounds) * 100 + Number(pennies.padEnd(2, '0')); return Number.isSafeInteger(result) && result > 0 ? result : null }

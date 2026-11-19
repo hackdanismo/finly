@@ -1,0 +1,6 @@
+import type { PaymentAccount, RecurringPayment } from '../types/payments'
+import { occurrencesInMonth } from './recurringDates'
+export function monthSummary(payments: RecurringPayment[], year: number, month: number, accountId?: string) { const occurrences = occurrencesInMonth(payments, year, month).filter((item) => !accountId || item.accountId === accountId); return { occurrences, total: occurrences.reduce((sum, item) => sum + item.amountInPence, 0), directDebits: occurrences.filter((item) => item.type === 'direct_debit').reduce((sum, item) => sum + item.amountInPence, 0), standingOrders: occurrences.filter((item) => item.type === 'standing_order').reduce((sum, item) => sum + item.amountInPence, 0) } }
+export const activeForAccount = (payments: RecurringPayment[], accountId?: string) => payments.filter((payment) => payment.status === 'active' && (!accountId || payment.accountId === accountId))
+export function nextOccurrence(payment: RecurringPayment, from = new Date()) { for (let i = 0; i < 24; i += 1) { const date = new Date(from.getFullYear(), from.getMonth() + i, 1); const result = monthSummary([payment], date.getFullYear(), date.getMonth()).occurrences[0]; if (result) return result } return null }
+export const accountName = (accounts: PaymentAccount[], id: string) => accounts.find((account) => account.id === id)?.name ?? 'Unknown account'
