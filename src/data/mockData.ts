@@ -3,7 +3,7 @@ export interface SummaryMetric { label: string; value: number; detail: string; t
 export interface Transaction { name: string; category: string; date: string; amount: number; kind: TransactionKind; initials: string; tone: string }
 export const summaryMetrics: SummaryMetric[] = [
   { label: 'Total balance', value: 12450, detail: '+8.2% from last month', trend: 'positive', icon: 'wallet' },
-  { label: 'Monthly income', value: 4250, detail: '+5.4% from last month', trend: 'positive', icon: 'income' },
+  { label: 'Income', value: 4250, detail: '+5.4% from last month', trend: 'positive', icon: 'income' },
   { label: 'Monthly expenses', value: 2180, detail: '12.8% less than last month', trend: 'positive', icon: 'expense' },
   { label: 'Remaining budget', value: 2070, detail: '52% of monthly budget left', trend: 'neutral', icon: 'budget' },
 ]
