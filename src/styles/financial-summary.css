@@ -1,0 +1,1 @@
+.person-summary{padding:20px;margin-bottom:18px}.person-summary h2{font-size:17px}.person-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px}.person-cards .payment-stat{box-shadow:none;background:#fbfcff}.negative{color:var(--red)}
